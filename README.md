@@ -16,3 +16,4 @@ Pour lancer le front-end :
 > npm install
 > npm start
 ```
+Docker ne marche pas :'(
