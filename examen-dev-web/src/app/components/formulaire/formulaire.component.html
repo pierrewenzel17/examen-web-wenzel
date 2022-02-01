@@ -1,0 +1,94 @@
+<mat-card class="mat-whiteframe-2dp">
+  <mat-card-title> <span>➕ Créer une musique</span> </mat-card-title>
+
+  <mat-card-content>
+    <form novalidate [formGroup]="form">
+
+      <p [class.errors]="form.get('title')!.invalid && (form.get('title')!.dirty || form.get('title')!.touched)">
+        <mat-form-field class="name" >
+          <mat-label>titre</mat-label>
+          <input formControlName="title" name="title" matInput placeholder="Ex: Black album" required/>
+          <mat-error *ngIf="form.get('title')!.dirty && form.get('title')!.errors?.['required']"><br />Le titre est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('title')!.dirty && form.get('title')!.errors?.['minlength']"><br />Le titre doit avoir au moins 2 caractères </mat-error>
+        </mat-form-field>
+        <mat-form-field class="name" >
+          <mat-label>Album</mat-label>
+          <input formControlName="album"  matInput placeholder="Ex: Metalica" name="album" required/>
+          <mat-error *ngIf="form.get('album')!.dirty && form.get('album')!.errors?.['required']"><br />Le album est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('album')!.dirty && form.get('album')!.errors?.['minlength']"><br />Le album doit avoir au moins 2 caractères </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput placeholder="Ex : 2016-08-25T00:00:00" style="width:100%" name="date" formControlName="date" required />
+          <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['required']"><br />LLa date est obligatoire</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p [class.errors]="form.get('duration')!.invalid && (form.get('duration')!.dirty || form.get('duration')!.touched)">
+        <mat-form-field>
+          <mat-label>Durée</mat-label>
+          <input  matInput placeholder="Ex: 3min12s" style="width:100%" name="duration" formControlName="duration" />
+          <mat-error *ngIf="form.get('duration')!.dirty && form.get('duration')!.errors?.['required']"><br />La durée doit être complété</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input  matInput placeholder="description ...." style="width:100%" name="description" formControlName="description" />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Artiste</mat-label>
+          <input  matInput placeholder="Artiste ...." style="width:100%" name="artist" formControlName="artist" />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="chip-list" >
+          <mat-label><mat-icon>work</mat-icon> Styles :</mat-label>
+          <mat-chip-list #chipList aria-label="Les styles de la musique">
+            <mat-chip *ngFor="let style of musiqueModel.styles" (removed)="removeChipset(style)" >
+              {{style}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="Ex: Metal"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="addChipset($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </p>
+
+      <input #fileInput type="file" (change)="onFileSelected($event)"  name="picture" style="display: none;" accept=".png,.jpg" />
+      <div *ngIf="musiqueModel.picture" >
+        <img width="100" src="{{musiqueModel.picture}}" alt="Photo de l'album" /> <br>
+        <button mat-flat-button color="warn" (click)="musiqueModel.picture = null;">
+          <mat-icon>
+            cancel
+          </mat-icon>
+        </button>
+      </div>
+      <div class="file-upload" *ngIf="!musiqueModel.picture">
+        <button type="button" (click)="fileInput.click()" mat-fab>
+          <mat-icon>
+            image
+          </mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Annuler</button>
+    <button mat-button type="submit" color="primary" (click)="submit(form.value)" [disabled]="!form.valid">Valider</button>
+  </mat-card-actions>
+</mat-card>
+

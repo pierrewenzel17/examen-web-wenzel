@@ -1,0 +1,37 @@
+{
+  "name": "tp-note-angular-backend",
+  "version": "1.0.0",
+  "description": "Backend of the application development asked during the exam",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-json-modules server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcPetitdemange/tp-note-angular-backend.git"
+  },
+  "keywords": [
+    "tp-note",
+    "backend",
+    "node",
+    "express",
+    "exam",
+    "course",
+    "cours"
+  ],
+  "author": "Marc Petitdemange",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcPetitdemange/tp-note-angular-backend/issues"
+  },
+  "homepage": "https://github.com/MarcPetitdemange/tp-note-angular-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "minimist": "^1.2.5",
+    "swagger-ui-express": "^4.3.0"
+  }
+}

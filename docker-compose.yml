@@ -1,0 +1,18 @@
+version: '3.9'
+networks:
+  musics:
+services:
+  front:
+    container_name: examen-app
+    build: examen-dev-web
+    ports:
+      - "4200:80"
+    networks:
+      - musics
+  back:
+    container_name: back-du-marco
+    build: tp-note-angular-backend
+    ports:
+      - "3000:3000"
+    networks:
+      - musics

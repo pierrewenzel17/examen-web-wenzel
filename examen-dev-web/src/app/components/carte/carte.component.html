@@ -1,0 +1,36 @@
+<mat-card class="carteCustom">
+  <mat-card-header>
+    <img *ngIf="musique?.picture" mat-card-avatar [src]="musique?.picture" alt="Avatar de l'a musique"/>
+    <mat-card-title> {{musique?.title| uppercase}} {{musique?.duration}} {{musique?.artist}}  </mat-card-title>
+    <mat-card-subtitle>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip color="primary" *ngFor="let style of musique?.styles">
+            <mat-icon class="small">
+              work_outline
+            </mat-icon>
+            {{style}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle class="info">
+      {{musique?.album}} {{moment(musique?.date).format('DD/MM/YYYY')}}
+    </mat-card-subtitle>
+    <mat-card-subtitle class="info">
+      {{musique?.description}}
+    </mat-card-subtitle>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-mini-fab aria-label="Editer" color="accent" [routerLink]="['/edit', musique?.id]">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab aria-label="Supprimer" color="warn" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+

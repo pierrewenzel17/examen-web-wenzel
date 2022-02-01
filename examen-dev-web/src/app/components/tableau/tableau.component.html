@@ -1,0 +1,43 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Album</th>
+      <th scope="col">Artiste</th>
+      <th scope="col">Durée</th>
+      <th scope="col">Date</th>
+      <th scope="col">Styles</th>
+      <th scope="col"></th>
+      <th scope="col" *ngIf="dialogStatus == 'inactive'">
+        <button mat-icon-button color="black" (click)="showDialog()">
+          <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of musiques">
+      <td>{{m.id}}</td>
+      <td>{{m.title}}</td>
+      <td>{{m.description}}</td>
+      <td>{{m.album}}</td>
+      <td>{{m.artist}}</td>
+      <td>{{m.duration}}</td>
+      <td>{{moment(m.date).format('DD/MM/YYYY')}}</td>
+      <td>{{m.styles}}</td>
+      <td>
+        <button mat-mini-fab aria-label="Editer" color="accent" [routerLink]="['/edit', m?.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+      <td>
+        <button mat-mini-fab aria-label="Supprimer" color="warn" (click)="delete(m)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
