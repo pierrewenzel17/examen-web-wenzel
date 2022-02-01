@@ -35,6 +35,7 @@ import { AjoutPopupComponent } from './components/tableau/ajout-popup/ajout-popu
 import { EditionComponent } from './components/tableau/edition/edition.component';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     AjoutPopupComponent,
     EditionComponent,
     FormulaireComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
